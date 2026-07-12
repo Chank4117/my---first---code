@@ -1,10 +1,22 @@
-   <!DOCTYPE html>
-   <html>
-   <head>
-     <title>My First Code</title>
-   </head>
-   <body>
-     <h1>Hello, this is my first code!</h1>
-     <p>I completed the #MyFirstCode challenge</p>
-   </body>
-   </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Website</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; background: #0d1117; color: white; }
+    button { padding: 15px 30px; font-size: 18px; background: #238636; color: white; border: none; border-radius: 8px; }
+    #fact { font-size: 22px; margin: 30px; }
+  </style>
+</head>
+<body>
+  <h1>🎉 Random Fun Facts 🎉</h1>
+  <p id="fact">Click the button for a fun fact!</p>
+  <button onclick="newFact()">Get New Fact</button>
+  <script>
+    const facts = ["Honey never spoils!", "Octopuses have 3 hearts.", "Bananas are berries."];
+    function newFact() {
+      document.getElementById('fact').innerText = facts[Math.floor(Math.random() * facts.length)];
+    }
+  </script>
+</body>
+</html>
