@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My First Website</title>
-  <style>
-    body { font-family: Arial; text-align: center; padding: 50px; background: #0d1117; color: white; }
-    button { padding: 15px 30px; font-size: 18px; background: #238636; color: white; border: none; border-radius: 8px; }
-    #fact { font-size: 22px; margin: 30px; }
-  </style>
+    <title>My First Website</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            text-align: center; 
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        button { 
+            padding: 15px 40px; 
+            font-size: 18px; 
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        #fact { 
+            font-size: 22px; 
+            margin: 30px; 
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 15px;
+        }
+    </style>
 </head>
 <body>
-  <h1>🎉 Random Fun Facts 🎉</h1>
-  <p id="fact">Click the button for a fun fact!</p>
-  <button onclick="newFact()">Get New Fact</button>
-  <script>
-    const facts = ["Honey never spoils!", "Octopuses have 3 hearts.", "Bananas are berries."];
-    function newFact() {
-      document.getElementById('fact').innerText = facts[Math.floor(Math.random() * facts.length)];
-    }
-  </script>
+    <h1>🎉 Random Fun Facts 🎉</h1>
+    <p id="fact">Click the button for a fun fact!</p>
+    <button onclick="newFact()">Get New Fact</button>
+    
+    <script>
+        const facts = [
+            "Honey never spoils! Archaeologists found 3000 year old honey in Egypt!",
+            "Octopuses have 3 hearts and blue blood!",
+            "A group of flamingos is called a 'flamboyance'",
+            "Bananas are berries, but strawberries aren't",
+            "A day on Venus is longer than a year on Venus"
+        ];
+        
+        function newFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById('fact').innerText = facts[randomIndex];
+        }
+    </script>
 </body>
 </html>
