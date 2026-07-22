@@ -1,52 +1,185 @@
+name=index.html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts</title>
     <style>
-        body { 
-            font-family: Arial; 
-            text-align: center; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 50px;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fact-box {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fact-text {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-        }
-        button { 
-            padding: 15px 40px; 
-            font-size: 18px; 
-            background: #ff6b6b;
-            color: white;
             border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
             border-radius: 50px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        #fact { 
-            font-size: 22px; 
-            margin: 30px; 
-            background: white;
-            color: #333;
-            padding: 20px;
-            border-radius: 15px;
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .fact-counter {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #999;
         }
     </style>
 </head>
 <body>
-    <h1>🎉 Random Fun Facts 🎉</h1>
-    <p id="fact">Click the button for a fun fact!</p>
-    <button onclick="newFact()">Get New Fact</button>
-    
+    <div class="container">
+        <h1>🎯 Fun Facts</h1>
+        
+        <div class="fact-box">
+            <p class="fact-text" id="factText">Click the button to discover an amazing fact!</p>
+        </div>
+        
+        <button onclick="showNewFact()">Get New Fact</button>
+        
+        <div class="fact-counter">
+            <span id="factCount">0</span> facts revealed
+        </div>
+    </div>
+
     <script>
         const facts = [
-            "Honey never spoils! Archaeologists found 3000 year old honey in Egypt!",
-            "Octopuses have 3 hearts and blue blood!",
-            "A group of flamingos is called a 'flamboyance'",
-            "Bananas are berries, but strawberries aren't",
-            "A day on Venus is longer than a year on Venus"
+            "Honey never spoils. Archaeologists have found 3000-year-old honey in Egyptian tombs that was still edible!",
+            "Octopuses have three hearts: two pump blood to the gills, and one pumps blood to the rest of the body.",
+            "A group of flamingos is called a 'flamboyance.'",
+            "Bananas are berries, but strawberries aren't! Botanically speaking, berries develop from a single flower's ovary.",
+            "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion of the metal.",
+            "Cleopatra lived closer to the invention of the iPhone than to the building of the Great Pyramid.",
+            "A day on Venus is longer than its year. Venus takes 243 Earth days to rotate, but only 225 days to orbit the sun.",
+            "Wombats have cube-shaped poop! Scientists believe the shape prevents the poop from rolling away.",
+            "Honey bees can recognize human faces and remember them.",
+            "The shortest war in history lasted only 38 minutes between Britain and Zanzibar in 1896.",
+            "A group of crows is called a 'murder,' and they can recognize individual human faces.",
+            "Tardigrades (water bears) can survive in space and extreme conditions that would kill most life forms.",
+            "Your nose can remember up to 1 trillion different smells.",
+            "Cats have a purr that vibrates at a frequency that may promote bone healing.",
+            "The fingerprints of koalas are so similar to humans that they could confuse crime scene investigators!",
+            "Sloths only defecate once a week and lose up to 30% of their body weight when they do.",
+            "A group of pugs is called a 'grumble.'",
+            "Dolphins have names for each other and can call out to specific individuals.",
+            "The Great Wall of China is not visible from space with the naked eye.",
+            "Butterflies taste with their feet to determine whether the plants they sit on are good to lay eggs on."
         ];
-        
-        function newFact() {
-            const randomIndex = Math.floor(Math.random() * facts.length);
-            document.getElementById('fact').innerText = facts[randomIndex];
+
+        let factCount = 0;
+        let lastFactIndex = -1;
+
+        function showNewFact() {
+            let randomIndex;
+            
+            // Ensure we don't show the same fact twice in a row
+            do {
+                randomIndex = Math.floor(Math.random() * facts.length);
+            } while (randomIndex === lastFactIndex && facts.length > 1);
+            
+            lastFactIndex = randomIndex;
+            
+            const factText = document.getElementById('factText');
+            factText.style.animation = 'none';
+            
+            // Trigger reflow to restart animation
+            void factText.offsetWidth;
+            
+            factText.style.animation = 'fadeIn 0.5s ease-out';
+            factText.textContent = facts[randomIndex];
+            
+            factCount++;
+            document.getElementById('factCount').textContent = factCount;
         }
+
+        // Show a fact on page load
+        showNewFact();
     </script>
 </body>
-</html>
+    </html>
